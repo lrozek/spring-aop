@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.lrozek.spring.aop.domain.Account;
 import pl.lrozek.spring.aop.domain.User;
+import pl.lrozek.spring.aop.service.AnotherService;
 import pl.lrozek.spring.aop.service.AuditService;
 import pl.lrozek.spring.aop.service.Service;
 
@@ -27,12 +28,25 @@ public class AuditAspectITest {
 
         // then
         verify( auditService ).audit( dummyUser );
+    }
 
+    @Test
+    public void itShouldAdviceWhenBindArgumentsIsFirst() throws Exception {
+        // given
+
+        // when
+        anotherService.doWork( dummyUser, 5L );
+
+        // then
+        verify( auditService ).audit( dummyUser );
     }
 
     private Account dummyAccount = mock( Account.class );
 
     private User dummyUser = mock( User.class );
+
+    @Autowired
+    private AnotherService anotherService;
 
     @Autowired
     private AuditService auditService;
