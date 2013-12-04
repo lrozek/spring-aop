@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import pl.lrozek.spring.aop.domain.Account;
 import pl.lrozek.spring.aop.domain.User;
 import pl.lrozek.spring.aop.service.AuditService;
 import pl.lrozek.spring.aop.service.Service;
@@ -22,12 +23,14 @@ public class AuditAspectITest {
         // given 
 
         // when
-        service.doWork( dummyUser );
+        service.doWork( dummyAccount, dummyUser );
 
         // then
         verify( auditService ).audit( dummyUser );
 
     }
+
+    private Account dummyAccount = mock( Account.class );
 
     private User dummyUser = mock( User.class );
 

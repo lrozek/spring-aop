@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import pl.lrozek.spring.aop.aspect.Auditable;
+import pl.lrozek.spring.aop.domain.Account;
 import pl.lrozek.spring.aop.domain.User;
 
 @Auditable("someValue")
@@ -12,7 +13,7 @@ import pl.lrozek.spring.aop.domain.User;
 public class ServiceImpl implements Service {
 
     @Override
-    public void doWork( User user ) {
+    public void doWork( Account account, User user ) {
         logger.info( "service method invoked" );
     }
 

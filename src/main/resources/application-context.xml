@@ -9,7 +9,7 @@
     <context:component-scan base-package="pl.lrozek.spring.aop" />
     <aop:aspectj-autoproxy />
     <aop:config>
-        <aop:pointcut id="allAuditableClasses" expression="@within(auditable) &amp;&amp; args(user)" />
+        <aop:pointcut id="allAuditableClasses" expression="@within(auditable) &amp;&amp; args(..,user)" />
 
         <aop:aspect ref="auditAspect">
             <aop:around method="advice" pointcut-ref="allAuditableClasses" />
