@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import pl.lrozek.spring.aop.domain.User;
 import pl.lrozek.spring.aop.service.AuditService;
 
 @Component
@@ -16,9 +17,9 @@ public class AuditAspect {
         this.auditService = auditService;
     }
 
-    public Object advice( ProceedingJoinPoint joinPoint, Auditable auditable ) throws Throwable {
+    public Object advice( ProceedingJoinPoint joinPoint, Auditable auditable, User user ) throws Throwable {
         logger.info( "intercepting {} with annotation value '{}'", joinPoint.getSignature().toShortString(), auditable.value() );
-        auditService.audit();
+        auditService.audit( user );
         return joinPoint.proceed();
     }
 

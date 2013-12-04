@@ -5,13 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import pl.lrozek.spring.aop.aspect.Auditable;
+import pl.lrozek.spring.aop.domain.User;
 
 @Auditable("someValue")
 @Component
 public class ServiceImpl implements Service {
 
     @Override
-    public void doWork() {
+    public void doWork( User user ) {
         logger.info( "service method invoked" );
     }
 
